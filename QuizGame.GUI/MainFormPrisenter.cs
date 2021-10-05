@@ -7,11 +7,7 @@ using QuizGame.Data;
 
 namespace QuizGame.GUI
 {
-    // убрать перемешивание из сервиса ID
-    // выбирать рандомный вопрос
-    // получить лист вопросов 
-    // получить возможно не весь список вопросов а половину от idlista
-    // подумать
+  
     public class MainFormPresenter
     {
         Question Question;
