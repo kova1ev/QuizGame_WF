@@ -8,5 +8,12 @@ namespace QuizGame.Data
 {
     interface IQuestionService
     {
+        void Create(Question qestion);
+        IEnumerable<Question> Questions { get; }
+
+        void Update(Question qestion);
+        void Delete(int id);
+
+
     }
 }
