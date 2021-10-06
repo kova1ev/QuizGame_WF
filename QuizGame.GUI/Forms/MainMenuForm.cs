@@ -27,11 +27,7 @@ namespace QuizGame.GUI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-            }
-            //ClickButtonNewGame?.Invoke(this, EventArgs.Empty);           
+            }           
         }
 
         private void buttonContinueGame_Click(object sender, EventArgs e)
@@ -45,10 +41,8 @@ namespace QuizGame.GUI
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {                
-            }          
-            //ClickButtonContinue?.Invoke(this, EventArgs.Empty);
+                     
+
         }
     }
 }

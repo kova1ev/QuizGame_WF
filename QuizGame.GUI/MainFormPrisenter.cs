@@ -10,6 +10,7 @@ namespace QuizGame.GUI
   
     public class MainFormPresenter
     {
+        Timer pauseTimer = new Timer();
         Question Question;
         private List<int> IdList;
         private int idQuestion;
@@ -20,23 +21,25 @@ namespace QuizGame.GUI
         {
             mainForm = form;
             mainForm.ClickCheckAnswer += CheckAnswer;
-            
+            pauseTimer.Interval = 1000;
+            pauseTimer.Enabled = true;
+            pauseTimer.Tick += Timer_Tick;
+
         }
         private Question GetNewQuestionOrNull()
         {
             if (IdList.Count > 0)
             {
                 IdList.Shufel();
-                idQuestion = IdList.ElementAt(IdList.Count - 1); //  аут оф ренж продебажить
+                idQuestion = IdList.ElementAt(IdList.Count - 1); 
                 return Question = QuestionService.GetQuestion(idQuestion);
             }
             else return null;
         }
 
 
-        private void UpdateView(Question question) // вывести вопрос
-        {
-            // убрать лишнее, метод должен только показывать (обновлять картинку)
+        private void UpdateView(Question question)
+        {            
             if (question != null)
             {
                 mainForm.QuestionText = question.QuestionText;
@@ -53,22 +56,20 @@ namespace QuizGame.GUI
             }
         }
         //----------------------------------------------------------------------------------
-        public void StartNewGame() //логика началы игры
+        public void StartNewGame() // начало игры
         {
             IdList = QuestionService.GetIdRangeList();
             UpdateView(GetNewQuestionOrNull());
-            // mainForm.ShowButtons();
         }
 
-        public  void ContinueGame() // логика продолжения(загрузки) игры
-        {// сделать асинхронным?
+        public  void ContinueGame() // продолжение(загрузка) игры
+        {
             JsonSerializer serializer = new JsonSerializer();
             IdList = serializer.LoadSave();
-            //IdList =  await serializer.LoadSaveAsync();
             if (IdList.Count > 0)
             {
                 UpdateView(GetNewQuestionOrNull());
-                //mainForm.ShowButtons();
+
             }
             else
             {
@@ -78,18 +79,12 @@ namespace QuizGame.GUI
         //----------------------------------------------------------------------------------
         void CheckAnswer(object sender, EventArgs e)
         {
-            Timer pauseTimer = new Timer();
-            pauseTimer.Interval = 1000;
-            pauseTimer.Enabled = true;
-            pauseTimer.Tick += Timer_Tick;
-
             Button button = (Button)sender;
             if (button.Text == Question.CorrectAnswer)
             {
                 mainForm.RightAnswer(sender);
                 pauseTimer.Start();
                 IdList.Remove(idQuestion);
-                //сохранять асинхронно!
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.SaveAsynk(IdList);                          
             }
@@ -106,9 +101,5 @@ namespace QuizGame.GUI
             pauseTimer.Stop();
             UpdateView(GetNewQuestionOrNull());
         }
-
-
-
-
     }
 }

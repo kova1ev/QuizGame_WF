@@ -26,6 +26,7 @@ namespace QuizGame.GUI
             set
             {
                 button1.Text = value;
+                button1.Enabled = true;
                 button1.BackColor = SystemColors.ControlLight;
             }
         }
@@ -35,6 +36,7 @@ namespace QuizGame.GUI
             set
             {
                 button2.Text = value;
+                button2.Enabled = true;
                 button2.BackColor = SystemColors.ControlLight;
             }
         }
@@ -44,6 +46,7 @@ namespace QuizGame.GUI
             set
             {
                 button3.Text = value;
+                button3.Enabled = true;
                 button3.BackColor = SystemColors.ControlLight;
             }
         }
@@ -53,6 +56,7 @@ namespace QuizGame.GUI
             set
             {
                 button4.Text = value;
+                button4.Enabled = true;
                 button4.BackColor = SystemColors.ControlLight;
             }
         }
@@ -86,7 +90,6 @@ namespace QuizGame.GUI
         {
             Button button = (Button)sender;
             ClickCheckAnswer?.Invoke(button, EventArgs.Empty);
-
         }
 
         //----------------------------------------------------------------------------------
@@ -111,12 +114,21 @@ namespace QuizGame.GUI
         {
             Button button = (Button)b;
             button.BackColor = Color.Green;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
         }
 
         public void WrongAnswer(object b)
         {
             Button button = (Button)b;
             button.BackColor = Color.Red;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+
         }
 
 

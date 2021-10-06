@@ -18,8 +18,6 @@ namespace QuizGame.GUI
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // MainForm mainForm = new MainForm();
-            //MainFormPresenter presenter = new MainFormPresenter(mainForm);
             Application.Run(new MainForm());
         }
     }
