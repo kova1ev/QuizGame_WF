@@ -6,8 +6,7 @@ using System.Windows.Forms;
 using QuizGame.Data;
 
 namespace QuizGame.GUI
-{
-  
+{ 
     public class MainFormPresenter
     {
         Timer pauseTimer = new Timer();
@@ -21,8 +20,6 @@ namespace QuizGame.GUI
         {
             mainForm = form;
             mainForm.ClickCheckAnswer += CheckAnswer;
-            pauseTimer.Interval = 1000;
-            pauseTimer.Enabled = true;
             pauseTimer.Tick += Timer_Tick;
 
         }
@@ -79,6 +76,8 @@ namespace QuizGame.GUI
         //----------------------------------------------------------------------------------
         void CheckAnswer(object sender, EventArgs e)
         {
+            pauseTimer.Interval = 1000;
+            pauseTimer.Enabled = true;
             Button button = (Button)sender;
             if (button.Text == Question.CorrectAnswer)
             {

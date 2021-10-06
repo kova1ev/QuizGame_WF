@@ -114,21 +114,21 @@ namespace QuizGame.GUI
         {
             Button button = (Button)b;
             button.BackColor = Color.Green;
-            button1.Enabled = false;
-            button2.Enabled = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
+            LockButton();
         }
 
         public void WrongAnswer(object b)
         {
             Button button = (Button)b;
             button.BackColor = Color.Red;
+            LockButton();
+        }
+        private void LockButton()
+        {
             button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
             button4.Enabled = false;
-
         }
 
 
