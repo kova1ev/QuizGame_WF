@@ -1,1 +1,1 @@
-# QuizGame_WF
+# Quiz Game WinForms
