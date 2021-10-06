@@ -366,3 +366,4 @@ todo.txt
 QuizGame.GUI/Data.sqlite-wal
 .gitignore
 QuizGame.GUI/Data.sqlite-shm
+QuizGame.GUI/UserSave.json
