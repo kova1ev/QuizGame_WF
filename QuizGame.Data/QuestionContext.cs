@@ -6,6 +6,7 @@ namespace QuizGame.Data
 {
     public class QuestionContext : DbContext
     {
+        private readonly string  devConnection = @"../../../Data.sqlite";
         public DbSet<Question> Questions { get; set; }
         public QuestionContext() 
         {
@@ -14,7 +15,7 @@ namespace QuizGame.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("FileName=Data.sqlite");
+            optionsBuilder.UseSqlite($"FileName={devConnection}");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder) { }
     }

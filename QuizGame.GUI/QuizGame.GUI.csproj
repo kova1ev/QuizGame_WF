@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data.sqlite-shm" />
+    <None Remove="Data.sqlite-wal" />
     <None Remove="todo.txt" />
   </ItemGroup>
 
