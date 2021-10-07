@@ -5,33 +5,83 @@ using System.Threading.Tasks;
 
 namespace QuizGame.Data
 {
-    public static class QuestionService //: IQuestionService
+    public class QuestionService : IQuestionService
     {
-        public static List<int> GetIdRangeList()
-        {
-            int countQestions = QuestionsCount();
-            int[] temp = new int[countQestions];
-            for (int i = 0; i < countQestions; i++) temp[i] = i+1;
-            return temp.ToList(); ;
-        }
 
-        public static  Question GetQuestion(int Id)
+        //public static List<int> GetIdRangeList()
+        //{
+        //    int countQestions = QuestionsCount();
+        //    int[] temp = new int[countQestions];
+        //    for (int i = 0; i < countQestions; i++) temp[i] = i+1;
+        //    return temp.ToList(); ;
+        //}
+
+        //public static  Question GetQuestion(int Id)
+        //{
+        //    Question question = null;
+        //    using(var db = new QuestionContext())
+        //    {
+        //        question = db.Questions.Find(Id);
+        //    }
+        //    return question;
+        //}
+
+        //public static int QuestionsCount()
+        //{
+        //    using(var db = new QuestionContext())
+        //    {
+        //        return db.Questions.Count();
+        //    }           
+        //}
+        public IEnumerable<Question> Questions
         {
-            Question question = null;
-            using(var db = new QuestionContext())
+            get
             {
-                question = db.Questions.Find(Id);
+                using (var context = new QuestionContext())
+                {
+                    return context.Questions;
+                }
             }
-            return question;
         }
 
-        public static int QuestionsCount()
+        public int Count
         {
-            using(var db = new QuestionContext())
+            get
             {
-                return db.Questions.Count();
-            }           
+                using (var context = new QuestionContext())
+                {
+                    return context.Questions.Count();
+                }
+            }
         }
 
+        public List<int> IdList()
+        {
+            return Enumerable.Range(1, Count).ToList();
+        }
+
+        public Question Get(int id)
+        {
+            using (var context = new QuestionContext())
+            {
+                return context.Questions.FirstOrDefault(q => q.Id == id);
+            }
+        }
+
+        //----------------------------------//
+        public void Create(Question qestion)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Question qestion)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,10 +8,10 @@ namespace QuizGame.Data
     {
         private readonly string  devConnection = @"../../../Data.sqlite";
         public DbSet<Question> Questions { get; set; }
-        public QuestionContext() 
-        {
-            Database.EnsureCreated();
-        }
+        //public QuestionContext() 
+        //{
+        //    Database.EnsureCreated();
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

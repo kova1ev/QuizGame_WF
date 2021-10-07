@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace QuizGame.Data
 {
-    interface IQuestionService
+    public interface IQuestionService
     {
-        void Create(Question qestion);
         IEnumerable<Question> Questions { get; }
+        int Count { get; }
+        List<int> IdList();
+        Question Get(int id);
 
+        void Create(Question qestion);
         void Update(Question qestion);
         void Delete(int id);
-
-
     }
 }
