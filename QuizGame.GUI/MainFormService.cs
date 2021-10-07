@@ -7,29 +7,39 @@ using QuizGame.Data;
 
 namespace QuizGame.GUI
 { 
-    public class MainFormPresenter
+    public class MainFormService
     {
         Timer pauseTimer = new Timer();
+
+        private readonly IQuestionService service;
+        private readonly ISerializer serializer;
+        private readonly IMainForm mainForm;
+
         Question Question;
         private List<int> IdList;
         private int idQuestion;
-        private readonly IMainForm mainForm;
-        public MainFormPresenter() { }
 
-        public MainFormPresenter(IMainForm form)
+
+        public MainFormService() { }
+
+        public MainFormService(IMainForm form)
         {
+            serializer = new JsonSerializer();
+            service = new QuestionService();
+
             mainForm = form;
             mainForm.ClickCheckAnswer += CheckAnswer;
             pauseTimer.Tick += Timer_Tick;
 
         }
+
         private Question GetNewQuestionOrNull()
         {
             if (IdList.Count > 0)
             {
                 IdList.Shufel();
                 idQuestion = IdList.ElementAt(IdList.Count - 1); 
-                return Question = QuestionService.GetQuestion(idQuestion);
+                return Question = service.Get(idQuestion);
             }
             else return null;
         }
@@ -55,13 +65,13 @@ namespace QuizGame.GUI
         //----------------------------------------------------------------------------------
         public void StartNewGame() // начало игры
         {
-            IdList = QuestionService.GetIdRangeList();
+            IdList = service.IdList();
             UpdateView(GetNewQuestionOrNull());
         }
 
         public  void ContinueGame() // продолжение(загрузка) игры
         {
-            JsonSerializer serializer = new JsonSerializer();
+
             IdList = serializer.LoadSave();
             if (IdList.Count > 0)
             {

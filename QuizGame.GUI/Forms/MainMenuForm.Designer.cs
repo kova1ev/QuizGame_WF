@@ -1,7 +1,7 @@
 ﻿
 namespace QuizGame.GUI
 {
-    partial class MainMenuForm
+    partial class StartMenuForm
     {
         /// <summary>
         /// Required designer variable.

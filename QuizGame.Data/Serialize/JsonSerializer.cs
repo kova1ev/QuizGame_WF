@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QuizGame.Data
 {
-    public class JsonSerializer
+    public class JsonSerializer : ISerializer
     {
         //private const string userPath = @"../../../UserSave.json";
         private const string userPath = @"UserSave.json";

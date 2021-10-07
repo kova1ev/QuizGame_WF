@@ -9,10 +9,10 @@ using QuizGame.Data;
 
 namespace QuizGame.GUI
 {
-    public partial class MainMenuForm : Form 
+    public partial class StartMenuForm : Form 
     {
-        private MainFormPresenter presenter;
-        public MainMenuForm(MainFormPresenter presenter)
+        private MainFormService presenter;
+        public StartMenuForm(MainFormService presenter)
         {
             InitializeComponent();
             this.presenter = presenter;

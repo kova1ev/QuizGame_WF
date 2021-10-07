@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuizGame.Data
 {
-    interface ISerializer
+    public interface ISerializer
     {
         public void Save(List<int> intList);
         public List<int> LoadSave();

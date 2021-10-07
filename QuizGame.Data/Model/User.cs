@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizGame.Data.Model
 {
+    
     public class User
     {
         public int Score { get; set; }

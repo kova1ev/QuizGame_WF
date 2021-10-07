@@ -62,19 +62,19 @@ namespace QuizGame.GUI
         }
         #endregion
 
-        public MainFormPresenter presenter;
+        public MainFormService presenter;
 
         public event EventHandler<EventArgs> ClickCheckAnswer; //////  <----
 
         public MainForm()
         {
             InitializeComponent();
-            presenter = new MainFormPresenter(this);
+            presenter = new MainFormService(this);
         }
 
         void Form1_Load(object sender, EventArgs e)
         {
-           ShowChildForm(new MainMenuForm(presenter));
+           ShowChildForm(new StartMenuForm(presenter));
         }
         private void ShowChildForm(Form childForm)
         {

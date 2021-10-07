@@ -5,15 +5,17 @@ using QuizGame.Data;
 
 namespace QuizGame.GUI
 {
-    class MainMenuPresenter
+    class StartMenuService
     {
-        private IMainMenuForm MainMenuForm;
-        private MainFormPresenter mainFormPresenter;       
+        private IStartMenu MainMenuForm;
+        private MainFormService mainFormPresenter;       
 
-        public MainMenuPresenter(IMainMenuForm mainMenuForm)//,MainFormPresenter mainFormPresenter)
+        public StartMenuService(IStartMenu mainMenuForm)
         {
-            this.mainFormPresenter = new MainFormPresenter();
+            this.mainFormPresenter = new MainFormService();
+
             this.MainMenuForm = mainMenuForm;
+
             MainMenuForm.ClickButtonNewGame += StartNewGame;
             mainMenuForm.ClickButtonContinue += ContinueGame;              
         }

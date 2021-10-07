@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuizGame.Data
 {
-    public interface IMainMenuForm
+    public interface IStartMenu
     {
         event EventHandler<EventArgs> ClickButtonNewGame;
         event EventHandler<EventArgs> ClickButtonContinue;
