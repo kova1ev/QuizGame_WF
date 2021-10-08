@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace QuizGame.Data.Model.Abstract
+﻿namespace QuizGame.Data.Model.Abstract
 {
     public abstract class BaseEntity
     {
