@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using QuizGame.Data.Model.Abstract;
 
 namespace QuizGame.Data
 {
     [Table("Questions")]
-    public class Question
+    public class Question : BaseEntity
     {      
-        public int Id { get; private set; }
         [Required]
         public string QuestionText { get; private set; }
         [Required]
