@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuizGame.Domain.Model;
 
-namespace QuizGame.Domain
+namespace QuizGame.GUI
 {
     public interface IQuestionService
     {

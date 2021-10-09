@@ -31,7 +31,7 @@ namespace QuizGame.Domain
             return list;
         }
 
-        public async void SaveAsynk(List<int> intList)
+        public async void SaveAsync(List<int> intList)
         {
              await   Task.Run(()=> Save(intList));
         }

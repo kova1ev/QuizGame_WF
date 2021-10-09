@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuizGame.Domain.Model;
 
 namespace QuizGame.Domain.Repository
 {
@@ -32,27 +33,26 @@ public class EntityRepositoryAsync : IRepositoryAsync
         {
             using(var dbconext = new QuestionContext())
             {
-                var list = await Task.Run(()=> dbconext.Questions.ToList());
-                return list;
+                return await Task.Run(()=>dbconext.Questions);
             }
         }
-        public  IEnumerable<Question> GetAll()
+
+        public async Task<Question> GetByIdAsync(int id)
         {
-            var dbconext = new QuestionContext();
-           
-                var list =  dbconext.Questions;
-                return list;
-            
+            using(var dbcontext = new QuestionContext())
+            {
+                return await Task.Run(()=>dbcontext.Questions.FirstOrDefault(q => q.Id == id));
+            }
         }
 
-        public Task<Question> GetByIdAsync(int id)
+        public async Task UpdateAsync(Question qestion)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Question qestion)
-        {
-            throw new NotImplementedException();
+            using (var dbcontext = new QuestionContext())
+            {
+                Question reslut = await GetByIdAsync(qestion.Id);
+                dbcontext.Update(reslut);
+                await Task.Run(()=> dbcontext.SaveChanges());
+            }
         }
     }
 }

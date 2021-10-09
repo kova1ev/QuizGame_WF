@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using QuizGame.Domain.Model;
 
 namespace QuizGame.Domain.Repository.Abstract
 {

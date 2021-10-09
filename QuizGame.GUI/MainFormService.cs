@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using QuizGame.Domain;
+using System.Threading.Tasks;
+using QuizGame.Domain.Model;
 
 namespace QuizGame.GUI
 { 
@@ -69,13 +71,13 @@ namespace QuizGame.GUI
             UpdateView(GetNewQuestionOrNull());
         }
 
-        public  void ContinueGame() // продолжение(загрузка) игры
+        public async void ContinueGame() // продолжение(загрузка) игры
         {
 
-            IdList = serializer.LoadSave();
+            IdList = await  serializer.LoadSaveAsync();
             if (IdList.Count > 0)
             {
-                UpdateView(GetNewQuestionOrNull());
+                await Task.Run(()=>UpdateView(GetNewQuestionOrNull()));
 
             }
             else
@@ -95,7 +97,7 @@ namespace QuizGame.GUI
                 pauseTimer.Start();
                 IdList.Remove(idQuestion);
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.SaveAsynk(IdList);                          
+                serializer.SaveAsync(IdList);                          
             }
             else
             {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using QuizGame.Domain.Model.Abstract;
 
-namespace QuizGame.Domain
+namespace QuizGame.Domain.Model
 {
     [Table("Questions")]
     public class Question : BaseEntity

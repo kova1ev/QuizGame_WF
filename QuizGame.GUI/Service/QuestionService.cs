@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QuizGame.Domain;
+using QuizGame.Domain.Model;
+using QuizGame.Domain.Repository.Abstract;
+using QuizGame.Domain.Repository;
 
-namespace QuizGame.Domain
+namespace QuizGame.GUI
 {
     public class QuestionService : IQuestionService
     {
+        IRepositoryAsync repositoryAsync;
+        public QuestionService( EntityRepositoryAsync entityRepositoryAsync)
+        {
+            repositoryAsync = entityRepositoryAsync;
+        }
         public IEnumerable<Question> Questions
         {
             get
