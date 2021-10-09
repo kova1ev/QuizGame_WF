@@ -1,4 +1,4 @@
-﻿namespace QuizGame.Data.Model.Abstract
+﻿namespace QuizGame.Domain.Model.Abstract
 {
     public abstract class BaseEntity
     {

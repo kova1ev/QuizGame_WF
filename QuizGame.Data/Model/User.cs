@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuizGame.Data.Model
+namespace QuizGame.Domain.Model
 {
     
     public class User

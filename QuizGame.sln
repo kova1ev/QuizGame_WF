@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizGame.GUI", "QuizGame.GUI\QuizGame.GUI.csproj", "{8215AAE0-B153-43C3-934A-F868FCC9F795}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizGame.Data", "QuizGame.Data\QuizGame.Data.csproj", "{D880B0D0-25CB-4E0E-A278-46811CC22861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizGame.Domain", "QuizGame.Data\QuizGame.Domain.csproj", "{D880B0D0-25CB-4E0E-A278-46811CC22861}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

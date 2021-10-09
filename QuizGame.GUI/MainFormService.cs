@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
-using QuizGame.Data;
+using QuizGame.Domain;
 
 namespace QuizGame.GUI
 { 

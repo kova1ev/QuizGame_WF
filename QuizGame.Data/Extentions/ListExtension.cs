@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
     public static class ListExtension
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using QuizGame.Data;
+using QuizGame.Domain;
 
 namespace QuizGame.GUI
 {

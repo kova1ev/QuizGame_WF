@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using QuizGame.Data.Model.Abstract;
+using QuizGame.Domain.Model.Abstract;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
     [Table("Questions")]
     public class Question : BaseEntity

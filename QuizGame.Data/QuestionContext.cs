@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
     public class QuestionContext : DbContext
     {

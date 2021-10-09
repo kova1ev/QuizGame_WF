@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
     public interface IMainForm
     {

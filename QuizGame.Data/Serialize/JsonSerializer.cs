@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
     public class JsonSerializer : ISerializer
     {

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using QuizGame.Data.Model.Abstract;
 
-namespace QuizGame.Data.Repository.Abstract
+namespace QuizGame.Domain.Repository.Abstract
 {
     //CRUD Repository
-    public interface IRepositoryAsync<TEntity> where TEntity : BaseEntity
+    public interface IRepositoryAsync<TEntity> 
     {
         Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAllAsync();
