@@ -11,30 +11,22 @@ namespace QuizGame.GUI
 {
     public class QuestionService : IQuestionService
     {
-        IRepositoryAsync repositoryAsync;
+        IRepositoryAsync _repository;
         public QuestionService( EntityRepositoryAsync entityRepositoryAsync)
         {
-            repositoryAsync = entityRepositoryAsync;
+            _repository = entityRepositoryAsync;
         }
-        public IEnumerable<Question> Questions
+        
+        public async Task<IEnumerable<Question>> GetAll()
         {
-            get
-            {
-                using (var context = new QuestionContext())
-                {
-                    return context.Questions;
-                }
-            }
+            return await _repository.GetAllAsync();
         }
 
         public int Count
         {
             get
             {
-                using (var context = new QuestionContext())
-                {
-                    return context.Questions.Count();
-                }
+                return GetAll().Result.Count();
             }
         }
 
@@ -43,28 +35,25 @@ namespace QuizGame.GUI
             return Enumerable.Range(1, Count).ToList();
         }
 
-        public Question Get(int id)
+        public async Task<Question> Get(int id)
         {
-            using (var context = new QuestionContext())
-            {
-                return context.Questions.FirstOrDefault(q => q.Id == id);
-            }
+            return await _repository.GetByIdAsync(id);   
+        
         }
 
-        //----------------------------------//
-        public void Create(Question qestion)
+        public async Task Add(Question qestion)
         {
-            throw new NotImplementedException();
+            await _repository.AddAsync(qestion);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            await _repository.DeleteAsync(id);
         }
 
-        public void Update(Question qestion)
+        public async Task Update(Question qestion)
         {
-            throw new NotImplementedException();
+            await _repository.UpdateAsync(qestion);
         }
     }
 }
