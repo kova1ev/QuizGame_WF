@@ -1,16 +1,17 @@
-﻿using System;
+﻿using QuizGame.Domain.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace QuizGame.Domain.Repository.Abstract
 {
     //CRUD Repository
-    public interface IRepositoryAsync<TEntity> 
+    public interface IRepositoryAsync
     {
-        Task<TEntity> GetByIdAsync(int id);
-        Task<IEnumerable<TEntity>> GetAllAsync();
-        Task AddAsync(TEntity qestion);
-        Task UpdateAsync(TEntity qestion);
+        Task<Question> GetByIdAsync(int id);
+        Task<IEnumerable<Question>> GetAllAsync();
+        Task AddAsync(Question qestion);
+        Task UpdateAsync(Question qestion);
         Task DeleteAsync(int id);
     }
 }
