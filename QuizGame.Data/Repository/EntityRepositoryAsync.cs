@@ -11,11 +11,11 @@ namespace QuizGame.Domain.Repository
 {
 public class EntityRepositoryAsync : IRepositoryAsync
     {
-        public async Task AddAsync(Question qestion)
+        public async Task AddAsync(Question question)
         {
             using (var dbcontext = new QuestionContext())
             {
-                dbcontext.Questions.Add(qestion);
+                dbcontext.Questions.Add(question);
                 await Task.Run(()=>dbcontext.SaveChanges());              
             }
         }
@@ -45,11 +45,11 @@ public class EntityRepositoryAsync : IRepositoryAsync
             }
         }
 
-        public async Task UpdateAsync(Question qestion)
+        public async Task UpdateAsync(Question question)
         {
             using (var dbcontext = new QuestionContext())
             {
-                Question reslut = await GetByIdAsync(qestion.Id);
+                Question reslut = await GetByIdAsync(question.Id);
                 dbcontext.Update(reslut);
                 await Task.Run(()=> dbcontext.SaveChanges());
             }

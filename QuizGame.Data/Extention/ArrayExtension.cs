@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QuizGame.Domain
+namespace QuizGame.Domain.Extantion
 { 
     public static class ArrayExtension
     {

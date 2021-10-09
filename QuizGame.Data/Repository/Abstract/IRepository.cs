@@ -11,8 +11,8 @@ namespace QuizGame.Domain.Repository.Abstract
     {
         Task<Question> GetByIdAsync(int id);
         Task<IEnumerable<Question>> GetAllAsync();
-        Task AddAsync(Question qestion);
-        Task UpdateAsync(Question qestion);
+        Task AddAsync(Question question);
+        Task UpdateAsync(Question question);
         Task DeleteAsync(int id);
     }
 }

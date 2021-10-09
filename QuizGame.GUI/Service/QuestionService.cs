@@ -6,6 +6,7 @@ using QuizGame.Domain;
 using QuizGame.Domain.Model;
 using QuizGame.Domain.Repository.Abstract;
 using QuizGame.Domain.Repository;
+using QuizGame.Domain.Extantion;
 
 namespace QuizGame.GUI
 {
@@ -41,9 +42,9 @@ namespace QuizGame.GUI
         
         }
 
-        public async Task Add(Question qestion)
+        public async Task Add(Question question)
         {
-            await _repository.AddAsync(qestion);
+            await _repository.AddAsync(question);
         }
 
         public async Task Delete(int id)
@@ -51,9 +52,22 @@ namespace QuizGame.GUI
             await _repository.DeleteAsync(id);
         }
 
-        public async Task Update(Question qestion)
+        public async Task Update(Question question)
         {
-            await _repository.UpdateAsync(qestion);
+            await _repository.UpdateAsync(question);
         }
+
+
+        public async Task<Question> GetRandomQuestion() 
+        {
+            Question question = null;
+            if (IdList.Count > 0)
+            {
+                IdList.Shufel();
+                idQuestion = IdList.ElementAt(IdList.Count - 1);
+                return question = service.Get(idQuestion);
+            }
+            return question;     
+        } 
     }
 }

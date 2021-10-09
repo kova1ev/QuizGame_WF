@@ -26,7 +26,7 @@ namespace QuizGame.GUI
 
         public MainFormService(IMainForm form)
         {
-            serializer = new JsonSerializer();
+            serializer = new UserSerializer();
             service = new QuestionService();
 
             mainForm = form;
@@ -96,7 +96,7 @@ namespace QuizGame.GUI
                 mainForm.RightAnswer(sender);
                 pauseTimer.Start();
                 IdList.Remove(idQuestion);
-                JsonSerializer serializer = new JsonSerializer();
+                UserSerializer serializer = new UserSerializer();
                 serializer.SaveAsync(IdList);                          
             }
             else
