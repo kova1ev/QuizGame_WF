@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using QuizGame.Domain.Model;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain
 {
-    public class QuestionContext : DbContext
+    internal class QuestionContext : DbContext
     {
         private readonly string  devConnection = @"../../../Data.sqlite";
         public DbSet<Question> Questions { get; set; }
-        public QuestionContext() 
-        {
-            Database.EnsureCreated();
-        }
+        //public QuestionContext() 
+        //{
+        //    Database.EnsureCreated();
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

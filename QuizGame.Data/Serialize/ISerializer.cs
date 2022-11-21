@@ -1,13 +1,15 @@
-﻿using System;
+﻿using QuizGame.Domain.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace QuizGame.Data
+namespace QuizGame.Domain.Serialize
 {
-    interface ISerializer
+    public interface ISerializer
     {
-        public void Save(List<int> intList);
-        public List<int> LoadSave();
-       
+        public Task<User> LoadSaveAsync();
+        public Task SaveAsync(User user);
+        bool SerchSave();
     }
 }
