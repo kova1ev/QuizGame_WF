@@ -5,7 +5,7 @@ using QuizGame.Domain.Model;
 
 namespace QuizGame.Domain
 {
-    public class QuestionContext : DbContext
+    internal class QuestionContext : DbContext
     {
         private readonly string  devConnection = @"../../../Data.sqlite";
         public DbSet<Question> Questions { get; set; }

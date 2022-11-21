@@ -1,95 +1,123 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuizGame.Domain;
-
+using QuizGame.Domain.Extantion;
+using QuizGame.Domain.Model;
+using QuizGame.GUI.Service;
 
 namespace QuizGame.GUI
 {
-    public partial class MainForm : Form, IMainForm
+    public partial class MainForm : Form
     {
-        #region
-        public string QuestionText
-        {
-            get => label_QuestionText.Text;
-            set => label_QuestionText.Text = value;
-        }
-        public string Answer1Text
-        {
-            get => button1.Text;
-            set
-            {
-                button1.Text = value;
-                button1.Enabled = true;
-                button1.BackColor = SystemColors.ControlLight;
-            }
-        }
-        public string Answer2Text
-        {
-            get => button2.Text;
-            set
-            {
-                button2.Text = value;
-                button2.Enabled = true;
-                button2.BackColor = SystemColors.ControlLight;
-            }
-        }
-        public string Answer3Text
-        {
-            get => button3.Text;
-            set
-            {
-                button3.Text = value;
-                button3.Enabled = true;
-                button3.BackColor = SystemColors.ControlLight;
-            }
-        }
-        public string Answer4Text
-        {
-            get => button4.Text;
-            set
-            {
-                button4.Text = value;
-                button4.Enabled = true;
-                button4.BackColor = SystemColors.ControlLight;
-            }
-        }
-        #endregion
+        private readonly Timer pauseTimer = new Timer();
 
-        public MainFormService presenter;
-
-        public event EventHandler<EventArgs> ClickCheckAnswer; //////  <----
-
+        // заменить на интерфейсы
+        private User user;
+        private readonly UserService userService;
         public MainForm()
         {
+            userService = new UserService();
+            // user = new User();
+
             InitializeComponent();
-            presenter = new MainFormService(this);
+            pauseTimer.Tick += Timer_Tick;
         }
 
         void Form1_Load(object sender, EventArgs e)
         {
-           ShowChildForm(new StartMenuForm(presenter));
-        }
-        private void ShowChildForm(Form childForm)
-        {
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            this.Controls.Add(childForm);
-            childForm.BringToFront();
-            childForm.Show();
-        }
+            StartGame();
 
-        void buttonsAnswer_Click(object sender, EventArgs e)
+        }
+        //----------------------------------------------------//
+        async void buttonsAnswer_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            ClickCheckAnswer?.Invoke(button, EventArgs.Empty);
+
+            pauseTimer.Interval = 1000;
+            pauseTimer.Enabled = true;
+
+            if (button.Text == user.CurrentQuestion.CorrectAnswer)
+            {
+                RightAnswer(sender);
+                pauseTimer.Start();
+                user.IdList.Remove(user.CurrentQuestion.Id); //
+                 //  убрать в сервис
+            }
+            else
+            {
+                WrongAnswer(sender);
+                pauseTimer.Start();
+            }
+            user.CurrentQuestion = userService.GetRandomQuestion(user.IdList);
+            await userService.SaveUserAsync(user);
+        }
+
+        void Timer_Tick(object sender, EventArgs e)
+        {
+            Timer pauseTimer = (Timer)sender;
+            pauseTimer.Stop();
+            UpdateView(user);
+        }
+
+        public void UpdateView(User user)
+        {
+            if (user.CurrentQuestion != null)
+            {
+                label_QuestionText.Text = user.CurrentQuestion.QuestionText;
+                string[] answetTemp = {
+                        user.CurrentQuestion.Answer1,
+                        user.CurrentQuestion.Answer2,
+                        user.CurrentQuestion.Answer3,
+                        user.CurrentQuestion.CorrectAnswer 
+                };
+                answetTemp.Shufel();
+                button1.Enabled = true;
+                button1.BackColor = SystemColors.ControlLight;
+                button2.Enabled = true;
+                button2.BackColor = SystemColors.ControlLight;
+                button3.Enabled = true;
+                button3.BackColor = SystemColors.ControlLight;
+                button4.Enabled = true;
+                button4.BackColor = SystemColors.ControlLight;
+                button1.Text = answetTemp[0];
+                button2.Text = answetTemp[1];
+                button3.Text = answetTemp[2];
+                button4.Text = answetTemp[3];
+            }
+            else
+            {
+                GameOver();
+            }
+        }
+        //----------------------------------------------------------------------------------
+        private void NewGame() // начало игры
+        {
+
+        }
+
+        private async void StartGame() // продолжение(загрузка) игры
+        {
+            try
+            {
+                if (!userService.SerchSave())
+                {
+                    user = userService.GetUser();
+                    await userService.SaveUserAsync(user);
+                }
+                else
+                {
+                    user = await userService.LoadUserAsync();
+                }
+                UpdateView(user);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         //----------------------------------------------------------------------------------

@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using QuizGame.Domain.Model;
 
-namespace QuizGame.GUI
+namespace QuizGame.GUI.Service
 {
     public interface IQuestionService
     {
-        Task<IEnumerable<Question>> GetAll();
+        IEnumerable<Question> GetAll();
         int Count { get; }
         List<int> IdList();
-        Task<Question> Get(int id);
-        Task Add(Question qestion);
-        Task Delete(int id);
-        Task Update(Question qestion);
+        Question Get(int id);
+        void Add(Question qestion);
+        void Delete(int id);
+        void Update(Question qestion);
+
     }
 }

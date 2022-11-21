@@ -8,66 +8,55 @@ using QuizGame.Domain.Repository.Abstract;
 using QuizGame.Domain.Repository;
 using QuizGame.Domain.Extantion;
 
-namespace QuizGame.GUI
+namespace QuizGame.GUI.Service
 {
     public class QuestionService : IQuestionService
     {
-        IRepositoryAsync _repository;
-        public QuestionService( EntityRepositoryAsync entityRepositoryAsync)
+        IRepository _repository = new EntityRepository();
+
+
+        public QuestionService() { }
+        public QuestionService( EntityRepository entityRepositoryAsync)
         {
             _repository = entityRepositoryAsync;
         }
         
-        public async Task<IEnumerable<Question>> GetAll()
+
+
+        public IEnumerable<Question> GetAll()
         {
-            return await _repository.GetAllAsync();
+            return  _repository.GetAll();
         }
 
-        public int Count
-        {
-            get
-            {
-                return GetAll().Result.Count();
-            }
-        }
+        public int Count => _repository.Count;
+
 
         public List<int> IdList()
         {
             return Enumerable.Range(1, Count).ToList();
         }
 
-        public async Task<Question> Get(int id)
+        public Question Get(int id)
         {
-            return await _repository.GetByIdAsync(id);   
+            return _repository.GetById(id);   
         
         }
 
-        public async Task Add(Question question)
+        public void Add(Question question)
         {
-            await _repository.AddAsync(question);
+             _repository.Add(question);
         }
 
-        public async Task Delete(int id)
+        public void Delete(int id)
         {
-            await _repository.DeleteAsync(id);
+            _repository.Delete(id);
         }
 
-        public async Task Update(Question question)
+        public void Update(Question question)
         {
-            await _repository.UpdateAsync(question);
+            _repository.Update(question);
         }
 
-
-        public async Task<Question> GetRandomQuestion() 
-        {
-            Question question = null;
-            if (IdList.Count > 0)
-            {
-                IdList.Shufel();
-                idQuestion = IdList.ElementAt(IdList.Count - 1);
-                return question = service.Get(idQuestion);
-            }
-            return question;     
-        } 
+ 
     }
 }

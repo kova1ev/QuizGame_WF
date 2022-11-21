@@ -7,12 +7,13 @@ using QuizGame.Domain.Model;
 namespace QuizGame.Domain.Repository.Abstract
 {
     //CRUD Repository
-    public interface IRepositoryAsync
+    public interface IRepository
     {
-        Task<Question> GetByIdAsync(int id);
-        Task<IEnumerable<Question>> GetAllAsync();
-        Task AddAsync(Question question);
-        Task UpdateAsync(Question question);
-        Task DeleteAsync(int id);
+        Question GetById(int id);
+        IEnumerable<Question> GetAll();
+        void Add(Question question);
+        void Update(Question question);
+        void Delete(int id);
+        int Count { get; }
     }
 }
